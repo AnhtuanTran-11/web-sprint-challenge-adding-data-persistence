@@ -10,6 +10,15 @@ router.get('/', (req, res, next) => {
       .catch(next);
   });
 
+  router.post('/', (req, res, next) => {
+    const task = req.body
+    Task.add(task)
+    .then((task) => {
+      res.status(201).json(task)
+    })
+    .catch(next)
+  })
+
 router.use('/', (req, res) => {
     res.json({ api: "Up and running in tasks" })
 })

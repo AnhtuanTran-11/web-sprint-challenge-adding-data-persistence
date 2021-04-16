@@ -9,6 +9,15 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/', (req, res, next) => {
+  const project = req.body
+  Project.add(project)
+  .then(project => {
+    res.status(201).json(project)
+  })
+  .catch(next)
+})
+
 router.use('/', (req, res) => {
   res.json({ api: 'Up and running in project' });
 });
